@@ -2,8 +2,11 @@ package com.omelchenkoaleks.specialist_2;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+
+import java.util.concurrent.RunnableFuture;
 
 import androidx.annotation.Nullable;
 
@@ -11,6 +14,7 @@ public class MyCoolService extends Service {
     private static final String TAG = "MyCoolService";
     public static final String EXTRA_DATA_SERVICE = "data service";
     private int mCounter = 0;
+    private Handler mHandler;
 
     @Nullable
     @Override
@@ -22,6 +26,20 @@ public class MyCoolService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(TAG, "onCreateService");
+
+        mHandler = new Handler();
+
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "my runnable");
+            }
+        };
+
+        // в очередь событий:
+//        mHandler.post(myRunnable);
+        // поставили объект Runnable в очередь событий с задержкой
+        mHandler.postDelayed(myRunnable, 2000);
     }
 
     @Override
@@ -33,7 +51,7 @@ public class MyCoolService extends Service {
             Log.d(TAG, "data: " + mCounter + " " + data);
         }
 
-//        stopSelf(startId);
+        stopSelf(startId);
 
         return START_STICKY;
 //        return START_NOT_STICKY;
