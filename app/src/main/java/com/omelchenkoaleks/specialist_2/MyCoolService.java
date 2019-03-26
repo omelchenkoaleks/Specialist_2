@@ -29,6 +29,16 @@ public class MyCoolService extends Service {
 
         mHandler = new Handler();
 
+        doSomething();
+    }
+
+    /**
+     * Полезный патерн, если нужно что-то делать в заданом промежутке ...
+     * Например, показать время через четкие интервалы ...
+     */
+    private void doSomething() {
+        Log.d(TAG, "doSomething");
+
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
@@ -36,9 +46,6 @@ public class MyCoolService extends Service {
             }
         };
 
-        // в очередь событий:
-//        mHandler.post(myRunnable);
-        // поставили объект Runnable в очередь событий с задержкой
         mHandler.postDelayed(myRunnable, 2000);
     }
 
