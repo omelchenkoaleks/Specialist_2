@@ -1,20 +1,22 @@
 package com.omelchenkoaleks.specialist_2;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import java.util.concurrent.RunnableFuture;
-
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class MyCoolService extends Service {
     private static final String TAG = "MyCoolService";
-    public static final String EXTRA_DATA_SERVICE = "data service";
+    public static final String EXTRA_DATA_SERVICE = "mData service";
     private int mCounter = 0;
     private Handler mHandler;
+    private String mData;
 
     @Nullable
     @Override
@@ -32,42 +34,49 @@ public class MyCoolService extends Service {
         doSomething();
     }
 
-    /**
-     * Полезный патерн, если нужно что-то делать в заданом промежутке ...
-     * Например, показать время через четкие интервалы ...
-     */
     private void doSomething() {
+        mCounter++;
         Log.d(TAG, "doSomething");
+
+        showNotification();
 
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                Log.d(TAG, "my runnable");
+                doSomething();
             }
         };
 
-        mHandler.postDelayed(myRunnable, 2000);
+        mHandler.postDelayed(myRunnable, 5000);
+    }
+
+    private void showNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        builder.setContentTitle("Wow");
+        builder.setContentText("" + mData + " " + mCounter);
+        builder.setSmallIcon(android.R.drawable.stat_sys_warning);
+
+        Notification notification = builder.build();
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
+        managerCompat.notify(1, notification);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        mCounter++;
-
         if (intent != null && intent.hasExtra(EXTRA_DATA_SERVICE)) {
-            String data = intent.getStringExtra(MyCoolService.EXTRA_DATA_SERVICE);
-            Log.d(TAG, "data: " + mCounter + " " + data);
+            mData = intent.getStringExtra(MyCoolService.EXTRA_DATA_SERVICE);
+            Log.d(TAG, "mData: " + mCounter + " " + mData);
         }
 
         stopSelf(startId);
 
         return START_STICKY;
-//        return START_NOT_STICKY;
-//        return START_REDELIVER_INTENT;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroyService");
+//        mHandler.removeCallbacksAndMessages(null);
     }
 }
