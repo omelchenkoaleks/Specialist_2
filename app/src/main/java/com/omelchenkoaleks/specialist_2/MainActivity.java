@@ -5,11 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_SEND_TEXT = "send text";
-    EditText mEnterText;
+    private EditText mEnterText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,13 +18,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mEnterText = findViewById(R.id.enter_text_et);
+        Button sendTextButton = findViewById(R.id.send_text_bt);
+
+        sendTextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doClick();
+            }
+        });
     }
 
-    public void onClickSendText(View view) {
-        String receiveText = mEnterText.getText().toString().trim();
-        if (mEnterText.length() > 0) {
+    private void doClick() {
+        String sendText = mEnterText.getText().toString().trim();
+        if (sendText.length() > 0) {
             Intent intent = new Intent(this, ShowTextActivity.class);
-            intent.putExtra(EXTRA_SEND_TEXT, receiveText);
+            intent.putExtra(EXTRA_SEND_TEXT, sendText);
             startActivity(intent);
         }
         mEnterText.setText(null);
