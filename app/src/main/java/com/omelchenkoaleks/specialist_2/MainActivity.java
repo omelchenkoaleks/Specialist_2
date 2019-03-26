@@ -1,12 +1,12 @@
 package com.omelchenkoaleks.specialist_2;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_SEND_TEXT = "send text";
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doClick() {
-//        String sendText = mEnterText.getText().toString().trim();
+        String sendText = mEnterText.getText().toString().trim();
 //        if (sendText.length() > 0) {
 //            Intent intent = new Intent(this, ShowTextActivity.class);
 //            intent.putExtra(EXTRA_SEND_TEXT, sendText);
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Service
         Intent intent = new Intent(this, MyCoolService.class);
+        intent.putExtra(EXTRA_SEND_TEXT, sendText);
         startService(intent);
     }
 }

@@ -25,7 +25,15 @@ public class MyCoolService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommandService");
-        return super.onStartCommand(intent, flags, startId);
+
+        if (intent != null && intent.hasExtra(MainActivity.EXTRA_SEND_TEXT)) {
+            String data = intent.getStringExtra(MainActivity.EXTRA_SEND_TEXT);
+            Log.d(TAG, "data: " + data);
+        }
+
+        return START_STICKY;
+//        return START_NOT_STICKY;
+//        return START_REDELIVER_INTENT;
     }
 
     @Override
