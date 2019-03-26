@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 public class MyCoolService extends Service {
     private static final String TAG = "MyCoolService";
     public static final String EXTRA_DATA_SERVICE = "data service";
+    private int mCounter = 0;
 
     @Nullable
     @Override
@@ -25,14 +26,14 @@ public class MyCoolService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommandService");
+        mCounter++;
 
         if (intent != null && intent.hasExtra(EXTRA_DATA_SERVICE)) {
             String data = intent.getStringExtra(MyCoolService.EXTRA_DATA_SERVICE);
-            Log.d(TAG, "data: " + data);
+            Log.d(TAG, "data: " + mCounter + " " + data);
         }
 
-        stopSelf(startId);
+//        stopSelf(startId);
 
         return START_STICKY;
 //        return START_NOT_STICKY;
