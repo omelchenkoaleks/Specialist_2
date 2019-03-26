@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Service
         Intent intent = new Intent(this, MyCoolService.class);
-        intent.putExtra(EXTRA_SEND_TEXT, sendText);
+        intent.putExtra(MyCoolService.EXTRA_DATA_SERVICE, sendText);
         startService(intent);
     }
 }
