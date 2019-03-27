@@ -52,16 +52,29 @@ public class MyCoolService extends Service {
     }
 
     private void showNotification() {
-        Intent intent = new Intent(this, ShowTextActivity.class);
-        intent.putExtra(MainActivity.EXTRA_SEND_TEXT, "" + mData + " " + mCounter);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intent1 = new Intent(this, ShowTextActivity.class);
+        intent1.putExtra(MainActivity.EXTRA_SEND_TEXT, "1: " + mData + " " + mCounter);
+        PendingIntent pendingIntent1 = PendingIntent.getActivity(
+                this, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent intent2 = new Intent(this, ShowTextActivity.class);
+        intent2.putExtra(MainActivity.EXTRA_SEND_TEXT, "2: " + mData + " " + mCounter );
+        PendingIntent pendingIntent2 = PendingIntent.getActivity(
+                this, 2, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Intent intent3 = new Intent(this, ShowTextActivity.class);
+        intent3.putExtra(MainActivity.EXTRA_SEND_TEXT, "3: " + mData + " " + mCounter);
+        PendingIntent pendingIntent3 = PendingIntent.getActivity(
+                this, 3, intent3, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Wow");
         builder.setContentText("" + mData + " " + mCounter);
         builder.setSmallIcon(android.R.drawable.stat_sys_warning);
-        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent1);
+
+        builder.addAction(android.R.drawable.sym_action_email, "Email", pendingIntent2);
+        builder.addAction(android.R.drawable.sym_action_call, "Call", pendingIntent3);
 
         Notification notification = builder.build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
