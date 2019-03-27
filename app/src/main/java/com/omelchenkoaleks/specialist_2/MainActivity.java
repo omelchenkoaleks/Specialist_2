@@ -29,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void doClick() {
+/*
         String sendText = mEnterText.getText().toString().trim();
 
         Intent intent = new Intent(this, MyCoolService.class);
         intent.putExtra(MyCoolService.EXTRA_DATA_SERVICE, sendText);
         startService(intent);
+*/
     }
 }
