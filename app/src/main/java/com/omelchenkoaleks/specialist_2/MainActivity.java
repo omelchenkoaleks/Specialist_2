@@ -30,14 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void doClick() {
         String sendText = mEnterText.getText().toString().trim();
-//        if (sendText.length() > 0) {
-//            Intent intent = new Intent(this, ShowTextActivity.class);
-//            intent.putExtra(EXTRA_SEND_TEXT, sendText);
-//            startActivity(intent);
-//        }
-//        mEnterText.setText(null);
 
-        // Service
         Intent intent = new Intent(this, MyCoolService.class);
         intent.putExtra(MyCoolService.EXTRA_DATA_SERVICE, sendText);
         startService(intent);

@@ -1,6 +1,7 @@
 package com.omelchenkoaleks.specialist_2;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
@@ -51,10 +52,16 @@ public class MyCoolService extends Service {
     }
 
     private void showNotification() {
+        Intent intent = new Intent(this, ShowTextActivity.class);
+        intent.putExtra(MainActivity.EXTRA_SEND_TEXT, "" + mData + " " + mCounter);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("Wow");
         builder.setContentText("" + mData + " " + mCounter);
         builder.setSmallIcon(android.R.drawable.stat_sys_warning);
+        builder.setContentIntent(pendingIntent);
 
         Notification notification = builder.build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
@@ -77,6 +84,6 @@ public class MyCoolService extends Service {
     public void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroyService");
-//        mHandler.removeCallbacksAndMessages(null);
+        mHandler.removeCallbacksAndMessages(null);
     }
 }
