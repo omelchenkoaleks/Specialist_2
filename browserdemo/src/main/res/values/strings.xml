@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BrowserDemo</string>
+    <string name="click_text_bt">Click</string>
+</resources>

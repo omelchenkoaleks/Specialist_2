@@ -8,16 +8,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BrowserActivity extends AppCompatActivity {
-    private WebView mWebView;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWebView = new WebView(this);
-        setContentView(mWebView);
+        WebView webView = new WebView(this);
+        setContentView(webView);
 
-        mWebView.loadUrl("https://www.google.com");
-        mWebView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("https://www.google.com");
+        webView.setWebViewClient(new WebViewClient());
     }
 }

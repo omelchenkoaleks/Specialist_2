@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setSmallIcon(android.R.drawable.btn_default_small);
         builder.setContentIntent(pendingIntent);
 
-
         Notification notification = builder.build();
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
         managerCompat.notify(1, notification);
