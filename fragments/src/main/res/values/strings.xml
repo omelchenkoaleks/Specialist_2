@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">fragments</string>
+    <string name="i_m_fragment_tv">I\'m fragment!</string>
 </resources>
