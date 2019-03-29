@@ -1,1 +1,1 @@
-include ':app', ':airplane', ':browserdemo'
+include ':app', ':airplane', ':browserdemo', ':fragments'
