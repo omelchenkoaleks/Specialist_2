@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -17,30 +17,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/nest_fl"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/text_tv"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <fragment
-            android:id="@+id/my_fragment_1"
-            android:name="com.omelchenkoaleks.fragments.MyFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp" />
+    </FrameLayout>
 
-        <fragment
-            android:id="@+id/my_fragment_2"
-            android:name="com.omelchenkoaleks.fragments.MyFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"/>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/text_tv"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent">-->
 
-    </LinearLayout>
+        <!--<fragment-->
+            <!--android:id="@+id/my_fragment_1"-->
+            <!--android:name="com.omelchenkoaleks.fragments.MyFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginTop="16dp" />-->
+
+        <!--<fragment-->
+            <!--android:id="@+id/my_fragment_2"-->
+            <!--android:name="com.omelchenkoaleks.fragments.MyFragment"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_marginBottom="16dp"/>-->
+
+    <!--</LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
