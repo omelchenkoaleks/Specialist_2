@@ -28,7 +28,16 @@ public class MainActivity extends AppCompatActivity {
         if (mFrameLayout.getChildCount() == 0) {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = manager.beginTransaction();
-            fragmentTransaction.add(R.id.nest_fl, new MyFragment());
+
+            // Bundle как структура, которя может передавать данные (ключ/значение)
+            // предлназначена для того, чтобы передавать их между разными компонентами ...
+            Bundle bundleForFragment  = new Bundle();
+            bundleForFragment .putString("parameter", "qqq");
+
+            MyFragment myFragment = new MyFragment();
+            myFragment.setArguments(bundleForFragment );
+
+            fragmentTransaction.add(R.id.nest_fl, myFragment);
             fragmentTransaction.commit();
         } else {
             Log.d("happy", "already have the fragment");

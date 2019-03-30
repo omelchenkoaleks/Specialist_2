@@ -6,12 +6,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class MyFragment extends Fragment {
+    private TextView mParameter;
 
     @Override
     public void onAttach(Context context) {
@@ -34,6 +36,14 @@ public class MyFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         Logger.logMe();
+
+        mParameter = view.findViewById(R.id.parameter_tv);
+
+        Bundle bundleForFragment = getArguments();
+        if (bundleForFragment != null && bundleForFragment.containsKey("parameter")) {
+            String parameter = bundleForFragment.getString("parameter");
+            mParameter.setText(parameter);
+        }
 
         return view;
     }
