@@ -17,11 +17,11 @@ public class MyFragment extends Fragment {
     private TextView mParameter;
 
     public static MyFragment getInstance(String parameter) {
-        Bundle bundleForFragment  = new Bundle();
-        bundleForFragment .putString(PARAMETER, parameter);
+        Bundle bundleForFragment = new Bundle();
+        bundleForFragment.putString(PARAMETER, parameter);
 
         MyFragment myFragment = new MyFragment();
-        myFragment.setArguments(bundleForFragment );
+        myFragment.setArguments(bundleForFragment);
 
         return myFragment;
     }
@@ -50,13 +50,18 @@ public class MyFragment extends Fragment {
 
         mParameter = view.findViewById(R.id.parameter_tv);
 
-        Bundle bundleForFragment = getArguments();
-        if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
-            String parameter = bundleForFragment.getString(PARAMETER);
-            mParameter.setText(parameter);
-        }
+        mParameter.setText(getParameter());
 
         return view;
+    }
+
+    // выносим получение данных по параметку из объекта Bundle в отдельный метод ...
+    private String getParameter() {
+        Bundle bundleForFragment = getArguments();
+        if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
+            return bundleForFragment.getString(PARAMETER);
+        }
+        return "no parameter";
     }
 
     @Override

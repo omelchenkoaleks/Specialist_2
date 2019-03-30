@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = manager.beginTransaction();
 
-            mMyFragment = MyFragment.getInstance("put");
+            mMyFragment = MyFragment.getInstance("put " + hashCode());
 
             fragmentTransaction.add(R.id.nest_fl, mMyFragment);
             fragmentTransaction.commit();
