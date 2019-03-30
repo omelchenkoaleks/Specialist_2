@@ -16,6 +16,7 @@ public class MyFragment extends Fragment {
     public static final String PARAMETER = "parameter";
     private TextView mParameter;
 
+    // этот код будет работать в Activity (Bundle) это передатчик
     public static MyFragment getInstance(String parameter) {
         Bundle bundleForFragment = new Bundle();
         bundleForFragment.putString(PARAMETER, parameter);
@@ -24,6 +25,15 @@ public class MyFragment extends Fragment {
         myFragment.setArguments(bundleForFragment);
 
         return myFragment;
+    }
+
+    // этот код работает внутри (здесь во фрагменте) Bundle - это приемник
+    private String getParameter() {
+        Bundle bundleForFragment = getArguments();
+        if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
+            return bundleForFragment.getString(PARAMETER);
+        }
+        return "no parameter";
     }
 
     @Override
@@ -53,15 +63,6 @@ public class MyFragment extends Fragment {
         mParameter.setText(getParameter());
 
         return view;
-    }
-
-    // выносим получение данных по параметку из объекта Bundle в отдельный метод ...
-    private String getParameter() {
-        Bundle bundleForFragment = getArguments();
-        if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
-            return bundleForFragment.getString(PARAMETER);
-        }
-        return "no parameter";
     }
 
     @Override
