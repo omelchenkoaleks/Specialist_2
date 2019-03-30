@@ -32,8 +32,6 @@ public class MyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         Logger.logMe();
 
-        // findViewById будут здесь
-
         return view;
     }
 
