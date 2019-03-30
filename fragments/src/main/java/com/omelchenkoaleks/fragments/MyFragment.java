@@ -2,6 +2,7 @@ package com.omelchenkoaleks.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class MyFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Logger.logMe();
+
+        Log.d("happy", "onCreate " + hashCode());
     }
 
     @Nullable

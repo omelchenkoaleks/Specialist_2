@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+    FrameLayout mFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,9 +17,15 @@ public class MainActivity extends AppCompatActivity {
         Logger.logMe();
         setContentView(R.layout.activity_main);
 
-        FrameLayout frameLayout = findViewById(R.id.nest_fl);
+        mFrameLayout = findViewById(R.id.nest_fl);
+    }
 
-        if (frameLayout.getChildCount() == 0) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Logger.logMe();
+
+        if (mFrameLayout.getChildCount() == 0) {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = manager.beginTransaction();
             fragmentTransaction.add(R.id.nest_fl, new MyFragment());
@@ -26,12 +33,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.d("happy", "already have the fragment");
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Logger.logMe();
     }
 
     @Override
