@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
     FrameLayout mFrameLayout;
+    MyFragment mMyFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +30,9 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager manager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = manager.beginTransaction();
 
-            // Bundle как структура, которя может передавать данные (ключ/значение)
-            // предлназначена для того, чтобы передавать их между разными компонентами ...
-            Bundle bundleForFragment  = new Bundle();
-            bundleForFragment .putString("parameter", "qqq");
+            mMyFragment = MyFragment.getInstance("put");
 
-            MyFragment myFragment = new MyFragment();
-            myFragment.setArguments(bundleForFragment );
-
-            fragmentTransaction.add(R.id.nest_fl, myFragment);
+            fragmentTransaction.add(R.id.nest_fl, mMyFragment);
             fragmentTransaction.commit();
         } else {
             Log.d("happy", "already have the fragment");

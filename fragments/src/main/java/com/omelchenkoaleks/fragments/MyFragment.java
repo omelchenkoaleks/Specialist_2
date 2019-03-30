@@ -13,7 +13,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class MyFragment extends Fragment {
+    public static final String PARAMETER = "parameter";
     private TextView mParameter;
+
+    public static MyFragment getInstance(String parameter) {
+        Bundle bundleForFragment  = new Bundle();
+        bundleForFragment .putString(PARAMETER, parameter);
+
+        MyFragment myFragment = new MyFragment();
+        myFragment.setArguments(bundleForFragment );
+
+        return myFragment;
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -40,8 +51,8 @@ public class MyFragment extends Fragment {
         mParameter = view.findViewById(R.id.parameter_tv);
 
         Bundle bundleForFragment = getArguments();
-        if (bundleForFragment != null && bundleForFragment.containsKey("parameter")) {
-            String parameter = bundleForFragment.getString("parameter");
+        if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
+            String parameter = bundleForFragment.getString(PARAMETER);
             mParameter.setText(parameter);
         }
 
