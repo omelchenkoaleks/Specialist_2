@@ -16,18 +16,14 @@ public class MyFragment extends Fragment {
     public static final String PARAMETER = "parameter";
     private TextView mParameter;
 
-    // этот код будет работать в Activity (Bundle) это передатчик
     public static MyFragment getInstance(String parameter) {
         Bundle bundleForFragment = new Bundle();
         bundleForFragment.putString(PARAMETER, parameter);
-
         MyFragment myFragment = new MyFragment();
         myFragment.setArguments(bundleForFragment);
-
         return myFragment;
     }
 
-    // этот код работает внутри (здесь во фрагменте) Bundle - это приемник
     private String getParameter() {
         Bundle bundleForFragment = getArguments();
         if (bundleForFragment != null && bundleForFragment.containsKey(PARAMETER)) {
@@ -47,7 +43,7 @@ public class MyFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Logger.logMe();
 
-        Log.d("happy", "onCreate " + hashCode());
+        Log.d("happy", "MyFragment onCreate " + hashCode());
     }
 
     @Nullable
@@ -105,5 +101,11 @@ public class MyFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         Logger.logMe();
+    }
+
+    // метод, который позовляет добавить новые данные во фрагмент ...
+    public void setMessage(String msg) {
+        if (mParameter != null)
+            mParameter.setText(mParameter.getText().toString() + " | " + msg);
     }
 }

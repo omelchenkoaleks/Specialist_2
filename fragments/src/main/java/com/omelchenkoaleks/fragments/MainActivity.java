@@ -26,8 +26,11 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Logger.logMe();
 
+        Log.d("happy", "MyActivity onStart " + hashCode());
+
+        FragmentManager manager = getSupportFragmentManager();
         if (mFrameLayout.getChildCount() == 0) {
-            FragmentManager manager = getSupportFragmentManager();
+            // Если пусто, то добавляем фрагмент ...
             FragmentTransaction fragmentTransaction = manager.beginTransaction();
 
             mMyFragment = MyFragment.getInstance("put " + hashCode());
@@ -36,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         } else {
             Log.d("happy", "already have the fragment");
+
+            // Если не пусто, то берем оттуда фрагмент ...
+            mMyFragment = (MyFragment) manager.findFragmentById(R.id.nest_fl);
         }
     }
 
@@ -43,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Logger.logMe();
+
+        mMyFragment.setMessage("added");
     }
 
     @Override
