@@ -41,6 +41,12 @@ public class MyFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Logger.logMe();
 
+        /**
+         * Если использовать этот метод, то операционная система не просто сохранит фрагмент,
+         * а сохранит тот же самый объект ...
+         */
+        setRetainInstance(true);
+
         Log.d("happy", "MyFragment onCreate " + hashCode());
     }
 
