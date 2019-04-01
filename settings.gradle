@@ -1,1 +1,1 @@
-include ':app', ':airplane', ':browserdemo', ':fragments', ':viewpager'
+include ':app', ':airplane', ':browserdemo', ':fragments', ':viewpager', ':castomview'
