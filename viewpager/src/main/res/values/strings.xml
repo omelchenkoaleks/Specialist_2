@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ViewPager</string>
+    <string name="fragment_text">fragment</string>
+</resources>
