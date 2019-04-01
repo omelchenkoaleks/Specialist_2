@@ -3,14 +3,13 @@ package com.omelchenkoaleks.castomview;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-public class DetailView extends LinearLayout implements PaneContainer {
-    TextView itemView;
+public class DualPaneContainer extends LinearLayout implements PaneContainer {
+    DetailView mDetailView;
 
-    public DetailView(Context context, @Nullable AttributeSet attrs) {
+    public DualPaneContainer(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -18,11 +17,12 @@ public class DetailView extends LinearLayout implements PaneContainer {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        itemView = findViewById(R.id.info_tv);
+        mDetailView = findViewById(R.id.detail_dv);
+        mDetailView.showItem("воточки жжж ююю ...");
     }
 
     @Override
     public void showItem(String item) {
-        itemView.setText(item);
+        mDetailView.showItem(item);
     }
 }
