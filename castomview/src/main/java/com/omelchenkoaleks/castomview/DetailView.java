@@ -14,7 +14,6 @@ public class DetailView extends LinearLayout {
         super(context, attrs);
     }
 
-    // при работе с кастомными вью findViewById находится в этом методе ...
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
