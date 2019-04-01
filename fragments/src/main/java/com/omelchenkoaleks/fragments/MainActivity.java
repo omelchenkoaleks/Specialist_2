@@ -52,22 +52,4 @@ public class MainActivity extends AppCompatActivity {
 
         mMyFragment.setMessage("added");
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Logger.logMe();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Logger.logMe();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Logger.logMe();
-    }
 }

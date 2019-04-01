@@ -1,6 +1,5 @@
 package com.omelchenkoaleks.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,10 +31,9 @@ public class MyFragment extends Fragment {
         return "no parameter";
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        Logger.logMe();
+    public void setMessage(String msg) {
+        if (mParameter != null)
+            mParameter.setText(mParameter.getText().toString() + " | " + msg);
     }
 
     @Override
@@ -62,50 +60,13 @@ public class MyFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Logger.logMe();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Logger.logMe();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Logger.logMe();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Logger.logMe();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Logger.logMe();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Logger.logMe();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Logger.logMe();
-    }
-
-    // метод, который позовляет добавить новые данные во фрагмент ...
-    public void setMessage(String msg) {
-        if (mParameter != null)
-            mParameter.setText(mParameter.getText().toString() + " | " + msg);
+        /**
+         * Обнуляем:
+         *    Во-первых, чтобы не было утечки памяти
+         *    Во- вторых, чтобы мы работали с ресурсами только тогда, когда это возоможно
+         */
+        mParameter = null;
     }
 }
