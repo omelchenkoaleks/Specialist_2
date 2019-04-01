@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CastomView</string>
+    <string name="will_be_info_text">Will be info</string>
 </resources>
