@@ -5,8 +5,6 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.omelchenkoaleks.adapterexperiment.Data.data;
-
 public class MainActivity extends AppCompatActivity {
     ListView mListView;
     MyListAdapter mListAdapter;
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         // создаем адаптер ...
         mListAdapter = new MyListAdapter();
-        mListAdapter.setData(data);
+        mListAdapter.setData();
         // передаем адаптер внутрь списка ...
         mListView.setAdapter(mListAdapter);
     }

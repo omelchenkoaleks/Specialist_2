@@ -16,8 +16,8 @@ public class MyListAdapter extends BaseAdapter {
     private String[] mData;
     private LayoutInflater mLayoutInflater;
 
-    public void setData(String[] newData) {
-        mData = newData;
+    void setData() {
+        mData = Data.data;
     }
 
     @Override
@@ -99,7 +99,7 @@ public class MyListAdapter extends BaseAdapter {
     и расходуя ресурсы, объекты а инициализировать их сразу в созданном классе ...
      */
     public static final class MyHolder {
-        public MyHolder(TextView data_1, TextView data_2, TextView data_3) {
+        MyHolder(TextView data_1, TextView data_2, TextView data_3) {
             this.data_1 = data_1;
             this.data_2 = data_2;
             this.data_3 = data_3;
