@@ -55,22 +55,43 @@ public class MyListAdapter extends BaseAdapter {
 
         // ОПТИМИЗИРУЕМ:
         View itemView;
+        MyHolder holder;
         if (convertView == null) {
             itemView = mLayoutInflater.inflate(R.layout.item, parent, false);
+            TextView data_1 = itemView.findViewById(R.id.data_1_tv);
+            TextView data_2 = itemView.findViewById(R.id.data_2_tv);
+            TextView data_3 = itemView.findViewById(R.id.data_3_tv);
+            holder = new MyHolder(data_1, data_2, data_3);
+            /*
+            метод setTag() можно назвать нычкой, куда можно положить один объект для использования ...
+             */
+            itemView.setTag(holder);
         } else {
             itemView = convertView;
+            holder = (MyHolder) convertView.getTag();
         }
 
-
-        TextView data_1 = itemView.findViewById(R.id.data_1_tv);
-        TextView data_2 = itemView.findViewById(R.id.data_2_tv);
-        TextView data_3 = itemView.findViewById(R.id.data_3_tv);
-
         String item = (String) getItem(position);
-        data_1.setText(item);
-        data_2.setText(item.toUpperCase());
-        data_3.setText(item.toLowerCase());
+        holder.data_1.setText(item);
+        holder.data_2.setText(item.toUpperCase());
+        holder.data_3.setText(item.toLowerCase());
 
         return itemView;
+    }
+
+    /*
+    ОПТИМИЗАЦИЯ №2 - нужна для того, чтобы не пересоздавать (бегая по дереву методом findViewById)
+    и расходуя ресурсы, объекты а инициализировать их сразу в созданном классе ...
+     */
+    public static final class MyHolder {
+        public MyHolder(TextView data_1, TextView data_2, TextView data_3) {
+            this.data_1 = data_1;
+            this.data_2 = data_2;
+            this.data_3 = data_3;
+        }
+
+        TextView data_1;
+        TextView data_2;
+        TextView data_3;
     }
 }
