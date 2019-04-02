@@ -45,7 +45,22 @@ public class MyListAdapter extends BaseAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
-        View itemView = mLayoutInflater.inflate(R.layout.item, parent, false);
+        /*
+        ОПТИМИЗАЦИЯ №1 - лучше использовать параметр convertView для того, чтобы при пролистывании
+        наши вью не нагружали (своим создание и уничтожением) сборщик мусора, а переиспользовались ...
+         */
+
+        // ВМЕСТО:
+//        View itemView = mLayoutInflater.inflate(R.layout.item, parent, false);
+
+        // ОПТИМИЗИРУЕМ:
+        View itemView;
+        if (convertView == null) {
+            itemView = mLayoutInflater.inflate(R.layout.item, parent, false);
+        } else {
+            itemView = convertView;
+        }
+
 
         TextView data_1 = itemView.findViewById(R.id.data_1_tv);
         TextView data_2 = itemView.findViewById(R.id.data_2_tv);
