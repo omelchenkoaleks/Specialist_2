@@ -59,15 +59,30 @@ public class MyListAdapter extends BaseAdapter {
         if (convertView == null) {
             itemView = mLayoutInflater.inflate(R.layout.item, parent, false);
             TextView data_1 = itemView.findViewById(R.id.data_1_tv);
-            TextView data_2 = itemView.findViewById(R.id.data_2_tv);
+            final TextView data_2 = itemView.findViewById(R.id.data_2_tv);
             TextView data_3 = itemView.findViewById(R.id.data_3_tv);
             holder = new MyHolder(data_1, data_2, data_3);
+
+            // фокусик = скрываем один из view ...
+            data_1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (data_2.getVisibility() == View.VISIBLE) {
+                        data_2.setVisibility(View.GONE);
+                    } else {
+                        data_2.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
+
             /*
-            метод setTag() можно назвать нычкой, куда можно положить один объект для использования ...
+            метод setTag() можно назвать нычкой, куда можно положить один объект
+            для будущего использования ...
              */
             itemView.setTag(holder);
         } else {
             itemView = convertView;
+            // здесь мы извлекаем холдер (созданный для будущего использования) ...
             holder = (MyHolder) convertView.getTag();
         }
 
