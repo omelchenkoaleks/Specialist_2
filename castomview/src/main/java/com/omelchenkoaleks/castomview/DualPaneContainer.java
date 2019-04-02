@@ -25,4 +25,9 @@ public class DualPaneContainer extends LinearLayout implements PaneContainer {
     public void showItem(String item) {
         mDetailView.showItem(item);
     }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
 }

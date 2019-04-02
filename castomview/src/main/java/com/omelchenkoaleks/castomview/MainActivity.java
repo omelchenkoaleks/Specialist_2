@@ -18,4 +18,11 @@ public class MainActivity extends AppCompatActivity {
     public PaneContainer getDualPaneContainer() {
         return mDualPaneContainer;
     }
+
+    @Override
+    public void onBackPressed() {
+        if (mDualPaneContainer.onBackPressed()) return;
+
+        super.onBackPressed();
+    }
 }

@@ -25,4 +25,9 @@ public class DetailView extends LinearLayout implements PaneContainer {
     public void showItem(String item) {
         itemView.setText(item);
     }
+
+    @Override
+    public boolean onBackPressed() {
+        return false;
+    }
 }
