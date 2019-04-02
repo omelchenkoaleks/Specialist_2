@@ -13,11 +13,12 @@ public class MyListAdapter extends BaseAdapter {
     1, переменная будет хранить ссылку на массив данных ...
     2, метод будет записывать (передавать) данные ...
      */
-    private String[] mData;
+    private String[] mData = new String[0];
     private LayoutInflater mLayoutInflater;
 
-    void setData() {
-        mData = Data.data;
+    void setData(String[] newData) {
+        mData = newData;
+        notifyDataSetChanged();
     }
 
     @Override
