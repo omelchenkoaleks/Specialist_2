@@ -18,6 +18,7 @@ public class MyListAdapter extends BaseAdapter {
 
     void setData(String[] newData) {
         mData = newData;
+        // перерисовывает вью, если были изменения ...
         notifyDataSetChanged();
     }
 
@@ -36,7 +37,7 @@ public class MyListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return getItem(position).hashCode();
     }
 
     @Override

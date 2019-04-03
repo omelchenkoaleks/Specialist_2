@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyLabFragment</string>
+    <string name="hello_world_this_is_activity">Hello World! This is Activity!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
