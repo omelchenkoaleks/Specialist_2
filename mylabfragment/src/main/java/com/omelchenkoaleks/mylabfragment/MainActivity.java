@@ -1,6 +1,7 @@
 package com.omelchenkoaleks.mylabfragment;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +13,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    public void doSomethingLong() {
+        try {
+            Thread.sleep(30000); // это любая долгая операция
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onClick(View view) {
+        doSomethingLong();
     }
 }

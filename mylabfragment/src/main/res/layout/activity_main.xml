@@ -15,7 +15,8 @@
         android:text="@string/activity_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="onClick"/>
 
     <fragment
         android:id="@+id/fragment_f"

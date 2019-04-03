@@ -12,16 +12,8 @@ public class MyClass {
         t2.start();
 
         System.out.println("wow!");
-
-        /*
-        метод посылвет сообщение thread, что пора завершаться ...
-         */
-//        t1.interrupt();
     }
 
-    /*
-    нужен, чтобы запустить какую-то отдельную задачу (в отдельном потоке) ...
-     */
     public static class MyThread extends Thread {
         @Override
         public void run() {
