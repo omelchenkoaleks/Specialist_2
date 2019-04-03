@@ -15,13 +15,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void doSomethingLong() {
         try {
-            Thread.sleep(30000); // это любая долгая операция
+            System.out.println("long operation starts");
+            Thread.sleep(5000); // это любая долгая операция
+            System.out.println("long operation stops");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 
     public void onClick(View view) {
-        doSomethingLong();
+        WorkerThread t1 = new WorkerThread();
+        t1.start();
+    }
+
+    /*
+    теперь вместо того, чтобы запускать долгую операцию из обработчика событий,
+    мы ее выселили непосредственно в отдельный поток Thread ...
+
+    ТЕПЕРЬ: главный поток приложения освобожден от долгой операции ...
+     */
+    public class WorkerThread extends Thread {
+        @Override
+        public void run() {
+            doSomethingLong();
+        }
     }
 }
