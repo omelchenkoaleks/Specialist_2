@@ -1,1 +1,1 @@
-include ':app', ':airplane', ':browserdemo', ':fragments', ':viewpager', ':castomview', ':adapterexperiment', ':mylabfragment', ':javalib'
+include ':app', ':airplane', ':browserdemo', ':fragments', ':viewpager', ':castomview', ':adapterexperiment', ':mylabfragment', ':javalib', ':asynctask'
