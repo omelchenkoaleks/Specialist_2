@@ -35,22 +35,36 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Посмотрим логи:
+        методы onPreExecute() and onPostExecute() выполняются в (1) потоке главном, а метод
+        doInBackground() в каком-то другом = ради этого AsyncTask и создавался ...
+     */
     public class MyTask extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
-            System.out.println("onPreExecute");
+            System.out.println("onPreExecute "
+                    + Thread.currentThread().getName()
+                    + " "
+                    + Thread.currentThread().getId());
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            System.out.println("doInBackground");
+            System.out.println("doInBackground "
+                    + Thread.currentThread().getName()
+                    + " "
+                    + Thread.currentThread().getId());
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            System.out.println("onPostExecute");
+            System.out.println("onPostExecute "
+                    + Thread.currentThread().getName()
+                    + " "
+                    + Thread.currentThread().getId());
         }
     }
 }
