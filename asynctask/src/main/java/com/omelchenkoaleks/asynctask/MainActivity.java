@@ -21,50 +21,38 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         mMyTask = new MyTask();
-        mMyTask.execute();
+        mMyTask.execute(3, 4);
     }
 
-    public void doSomethingLong() {
-        try {
-            System.out.println("long operation starts");
-            Thread.sleep(5000);
-            mButton_2.setText("done");
-            System.out.println("long operation stops");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /*
-    Посмотрим логи:
-        методы onPreExecute() and onPostExecute() выполняются в (1) потоке главном, а метод
-        doInBackground() в каком-то другом = ради этого AsyncTask и создавался ...
-     */
-    public class MyTask extends AsyncTask<Void, Void, Void> {
-
+    public class MyTask extends AsyncTask<Integer, Void, String> {
         @Override
-        protected void onPreExecute() {
-            System.out.println("onPreExecute "
-                    + Thread.currentThread().getName()
-                    + " "
-                    + Thread.currentThread().getId());
-        }
+        protected String doInBackground(Integer... params) {
+            Integer a = params[0];
+            Integer b = params[1];
 
-        @Override
-        protected Void doInBackground(Void... voids) {
             System.out.println("doInBackground "
                     + Thread.currentThread().getName()
                     + " "
                     + Thread.currentThread().getId());
-            return null;
+
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            int c = a + b;
+            return "Summ " + c;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(String sum) {
             System.out.println("onPostExecute "
                     + Thread.currentThread().getName()
                     + " "
                     + Thread.currentThread().getId());
+
+            mButton_2.setText(sum);
         }
     }
 }
