@@ -18,16 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         mButton_2 = findViewById(R.id.button_2_bt);
 
-        /*
-        с помощью Handler мы поставили в очередь UI-потока еще одну задачу и Looper выполнил ее
-         */
         mHandler = new Handler();
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("I`m in Runnable!");
-            }
-        });
     }
 
     public void doSomethingLong() {
@@ -35,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("long operation starts");
 
             Thread.sleep(5000); // это любая долгая операция
-            mButton_2.setText("done");
+
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("I`m in Runnable!");
+                    mButton_2.setText("done");
+                }
+            });
 
             System.out.println("long operation stops");
         } catch (InterruptedException e) {
