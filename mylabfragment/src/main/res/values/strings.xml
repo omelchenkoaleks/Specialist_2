@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">MyLabFragment</string>
     <string name="i_m_fragment">I`m fragment</string>
-    <string name="activity_text">Activity</string>
 </resources>
