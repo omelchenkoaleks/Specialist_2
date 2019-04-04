@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ServiceAsyncTasdThread</string>
+    <string name="enter_number_et">Enter number</string>
+    <string name="send_number_bt">send number</string>
+</resources>
