@@ -24,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         mMyTask.execute(3, 4);
     }
 
+
+    /*
+    ВАЖНАЯ ЗАМЕТКА: если в методе doInBackground() запущен долгий процесс, и тут
+    пользователь поворачивает экран, процесс продолжается, но уже другое активити и оно
+    не получит тот результат, который должен прийти ))) ...
+     */
     public class MyTask extends AsyncTask<Integer, Void, String> {
         @Override
         protected String doInBackground(Integer... params) {
