@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyLabServiceThread</string>
+    <string name="enter_et">Enter number</string>
+    <string name="button_bt">Button</string>
+</resources>
