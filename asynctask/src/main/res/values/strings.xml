@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AsyncTask</string>
+    <string name="fragment_tv">FRAGMENT</string>
+    <string name="save_text_bt">save</string>
 </resources>
