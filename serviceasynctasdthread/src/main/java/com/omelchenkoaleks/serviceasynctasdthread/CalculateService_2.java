@@ -20,6 +20,10 @@ public class CalculateService_2 extends IntentService {
         super("CalculateService_2");
     }
 
+    /*
+    этот сервис запускается, обрабатывает интент, а дальше, если есть еще интент на обработку, то
+    и его тоже обрабатывает (по очереди), если нет - он себя завершает ...
+     */
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.d("happy", "CalculateService_2.onHandleIntent "
