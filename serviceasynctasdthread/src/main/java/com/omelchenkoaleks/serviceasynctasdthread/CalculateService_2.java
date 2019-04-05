@@ -8,7 +8,8 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 public class CalculateService_2 extends IntentService {
-    private static final String EXTRA_SEND_NUMBER_SERVICE_2 = "send number";
+    public static final String EXTRA_SEND_NUMBER_SERVICE_2 = "send number";
+    public static final String EXTRA_SEND_SQUARE_SERVICE_ACTION = "com.cool.intent.square.action";
 
     public static Intent getIntent(Context context, int num) {
         Intent intent = new Intent(context, CalculateService_2.class);
@@ -35,7 +36,15 @@ public class CalculateService_2 extends IntentService {
             Thread.sleep(10000);
             if (intent != null && intent.hasExtra(EXTRA_SEND_NUMBER_SERVICE_2)) {
                 int num = intent.getIntExtra(EXTRA_SEND_NUMBER_SERVICE_2, 0);
-                Log.d("happy", "square " + (num * num));
+                int square = num * num;
+                Log.d("happy", "square " + square);
+
+                // ОТПРАВКА: передаем данные из сервиса ...
+                Intent broadcast = new Intent();
+                broadcast.setAction(EXTRA_SEND_SQUARE_SERVICE_ACTION);
+                broadcast.putExtra(EXTRA_SEND_NUMBER_SERVICE_2, square);
+                // передаем этот интент операционной системе, которая может найти его получателя ...
+                sendBroadcast(broadcast);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
