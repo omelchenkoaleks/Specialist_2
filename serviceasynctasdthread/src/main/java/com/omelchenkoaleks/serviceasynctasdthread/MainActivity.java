@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private void sendCommand() {
         try {
             int number = Integer.valueOf(mNumberText.getText().toString());
-            Intent intent = CalculatorService.getIntent(MainActivity.this, number);
+            Intent intent = CalculatorService.getIntent(this, number);
             startService(intent);
         } catch (Exception e) {
             e.printStackTrace();
