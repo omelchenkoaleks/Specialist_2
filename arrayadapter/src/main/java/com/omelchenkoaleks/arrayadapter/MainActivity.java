@@ -1,11 +1,17 @@
 package com.omelchenkoaleks.arrayadapter;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.activeandroid.Model;
+import com.activeandroid.query.Select;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,5 +49,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void doButton() {
         // TODO:
+
+        Sepulka sepulka = new Sepulka();
+        sepulka.foo = "hello " + System.currentTimeMillis();
+        sepulka.bar = "world " + System.currentTimeMillis();
+
+        // запись объекта в таблицу bd с помощью ORM
+        sepulka.save();
+
+        // выбираем нужные данные из таблицы с помощью ORM
+        List<Model> ses = new Select().from(Sepulka.class).execute();
+        Log.d("happy", ses.toString());
     }
 }
